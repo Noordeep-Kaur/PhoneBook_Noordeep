@@ -1,0 +1,50 @@
+
+
+<div id="div1" class="alert alert-dark">
+    <h1>Phone Book App</h1>
+    <div id="div2"><b>Contacts</b>
+        <button id="btn1" class="btn btn-primary" (click)="openForm()">+ Add Contact</button>
+        <div>
+            <input type="text" #name placeholder="Search for contact by last name">
+            <button id="btn2" type="submit" ><i class="fa fa-search" (click)=search(name.value)></i></button>
+        </div>
+        
+    </div>
+    <div *ngFor="let e of extra" >
+      <div *ngIf="sear">
+        {{e.firstName}}{{e.lastName}}<br>
+        {{e.phoneNumber}}
+      </div>
+      
+    </div>
+
+    <div id="div3" *ngFor="let cont of contacts">
+       <b> {{cont.firstName}}
+         {{cont.lastName}}</b><span id="i1" class="fa fa-trash" (click)="removeItem(cont)"></span>
+         <button class="btn btn-dark" (click)="display(cont)">Update</button><br>         
+       <i class="fa fa-phone">{{cont.phoneNumber}}</i> 
+    </div>
+    <div *ngIf="upd">
+      <input type="text" #fn placeholder="First Name" required>
+      <input type="text" #ln placeholder="Last Name" required>
+      <input type="text" #pn placeholder="Phone Number" required>
+      <br>
+      <button type="submit" class="btn btn-primary" (click)="update(fn.value,ln.value,pn.value)">Create</button>
+    </div>
+   
+</div>
+
+
+
+<div id="div4" id="myForm" class="alert alert-success" *ngIf="open" >
+      <h1>New Contact</h1>
+      
+      <input type="text" placeholder="First Name" [(ngModel)]="contact.firstName" required>
+      <input type="text" placeholder="Last Name" [(ngModel)]="contact.lastName" required>
+      <input type="text" placeholder="Phone Number" [(ngModel)]="contact.phoneNumber" required>
+      <br>
+      <button type="submit" class="btn btn-primary" (click)="addContact()">Create</button>
+      <button type="submit" class="btn btn-danger" (click)="closeForm()">Close</button> 
+  </div> 
+
+<!-- <div>{{contacts|json}}</div> -->
